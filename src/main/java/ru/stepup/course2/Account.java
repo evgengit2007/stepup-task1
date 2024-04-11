@@ -41,6 +41,10 @@ public class Account {
         return nameHolder;
     }
 
+    public TypeAccList getTypeAccount() {
+        return typeAccount;
+    }
+
     public void setNameHolder(String nameHolder) {
         // проверяем, что имя владельца не пустое
         if (nameHolder == null || nameHolder.isEmpty()) {
@@ -48,7 +52,7 @@ public class Account {
         }
         // сохраним старое значение
         String oldNameHolder = this.nameHolder;
-        if ((oldNameHolder == null||oldNameHolder.isEmpty()) == false) {
+        if (!(oldNameHolder == null||oldNameHolder.isEmpty())) {
             executeOpers.push(() -> this.nameHolder = oldNameHolder);
         }
         // устанавливаем новое
@@ -56,7 +60,7 @@ public class Account {
     }
 
     public HashMap<Valuta, Integer> getValutaIntegerHashMap(HashMap<Valuta, Integer> valutaIntegerHashMap) {
-        return new HashMap<Valuta, Integer>(this.valutaIntegerHashMap);
+        return new HashMap<>(this.valutaIntegerHashMap);
     }
 
     public void setValuta(Valuta nameVal, Integer countVal) {

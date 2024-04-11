@@ -28,9 +28,22 @@ public class TestPart1 {
 
     @Test
     @SneakyThrows(NullPointerException.class)
-    public void test2() throws EmptyUndo {
-
+    public void test2() {
+        // проверка сохранения и восстановления
+        Account account1 = new Account("Evgen");
+        account1.setTypeAccount(TypeAccList.PREMIUM);
+        TypeAccList oldTypeAccList = account1.getTypeAccount();
+        Loader save1 = account1.Save();
+        account1.setTypeAccount(TypeAccList.USUALY);
+        save1.load();
+        Assertions.assertEquals(account1.getTypeAccount(), oldTypeAccList);
     }
 
-
+    @Test
+    @SneakyThrows(NullPointerException.class)
+    public void test3() {
+        // проверка запускающего модуля MainApp
+        String[] str = null;
+        Assertions.assertDoesNotThrow(()-> MainApp.main(str));
+    }
 }
